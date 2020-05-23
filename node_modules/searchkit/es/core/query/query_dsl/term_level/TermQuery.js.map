@@ -1,0 +1,1 @@
+{"version":3,"file":"TermQuery.js","sourceRoot":"","sources":["../../../../../src/core/query/query_dsl/term_level/TermQuery.ts"],"names":[],"mappings":"AAAA,MAAM,UAAU,SAAS,CAAC,GAAG,EAAE,KAAK;IAClC,OAAO;QACL,IAAI,EAAE;YACJ,CAAC,GAAG,CAAC,EAAE,KAAK;SACb;KACF,CAAA;AACH,CAAC"}

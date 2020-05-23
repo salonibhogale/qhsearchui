@@ -1,0 +1,1 @@
+{"version":3,"file":"PipelineAggregations.js","sourceRoot":"","sources":["../../../../../src/core/query/query_dsl/aggregations/PipelineAggregations.ts"],"names":[],"mappings":";AAAA,iDAA+C;AAE/C,SAAgB,iBAAiB,CAAC,GAAG,EAAE,YAAY;IACjD,OAAO,6BAAa,CAAC,GAAG,EAAE,EAAE,YAAY,cAAA,EAAE,CAAC,CAAA;AAC7C,CAAC;AAFD,8CAEC"}

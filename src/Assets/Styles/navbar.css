@@ -1,0 +1,14 @@
+.navbar-nav {
+  margin-right: 100px;
+}
+nav {
+  -webkit-box-shadow: 0 8px 6px -6px #999;
+  -moz-box-shadow: 0 8px 6px -6px #999;
+  box-shadow: 0 8px 6px -6px #999;
+}
+.nav-link {
+  color: #b83027;
+}
+.navbar-toggler {
+  border-color: #b83027;
+}

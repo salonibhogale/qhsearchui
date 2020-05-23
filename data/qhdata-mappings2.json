@@ -1,0 +1,68 @@
+{
+  "mappings": {
+    "question": {
+      "properties": {
+        "starred_unstarred": {
+          "type": "string",
+          "analyzer": "keyword"
+        },
+        "ID": {
+          "type": "string",
+          "analyzer": "keyword"
+        },
+        "party": {
+          "type": "string",
+          "analyzer": "keyword"
+        },
+        "state": {
+          "type": "string",
+          "analyzer": "keyword"
+        },
+        "month": {
+          "type": "string",
+          "analyzer": "keyword"
+        },
+        "day": {
+          "type": "string",
+          "analyzer": "keyword"
+        },
+        "year": {
+          "type": "string",
+          "analyzer": "keyword"
+        },
+        "constituency": {
+          "type": "string",
+          "analyzer": "keyword"
+        },
+        "gender": {
+          "type": "string",
+          "analyzer": "keyword"
+        },
+        "constituency_type": {
+          "type": "string",
+          "analyzer": "keyword"
+        },
+        "member": {
+          "type": "string",
+          "analyzer": "keyword"
+        },
+        "ministry": {
+          "type": "string",
+          "analyzer": "keyword"
+        },
+        "Q_No": {
+          "type": "integer"
+        },
+        "ls_no": {
+          "type": "integer"
+        },
+        "Question": {
+          "type": "string"
+        },
+        "clean_answers": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,59 @@
+label {
+  margin-left: 5px;
+}
+
+.display-block {
+  display: block !important;
+}
+
+.display-none {
+  display: none;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.modal-header {
+  background: whitesmoke;
+}
+
+.modal-title {
+  font-weight: bold;
+  font-size: 18px;
+}
+.modal-body {
+  max-height: calc(100vh - 210px);
+  overflow-y: auto;
+}
+
+a.disabled,
+.btn.disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.leaflet-container {
+  height: 100vh;
+  width: 100%;
+  background-color: transparent !important;
+}
+.bar-icon {
+  width: 35px;
+  height: 0.2rem;
+  background-color: white;
+  margin: 5px 5px 3px 0px;
+}
+.control-label {
+  margin-bottom: 0rem !important;
+  font-size: 16px;
+  color: #555;
+}
+.nav-item.active .nav-link {
+  background-color: #b83027;
+  color: white;
+}

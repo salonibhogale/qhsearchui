@@ -1,0 +1,1 @@
+{"version":3,"file":"MockESTransport.js","sourceRoot":"","sources":["../../../src/core/transport/MockESTransport.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,WAAW,EAAE,MAAM,eAAe,CAAA;AAE3C,MAAM,OAAO,eAAgB,SAAQ,WAAW;IAC9C,MAAM,CAAC,KAAK;QACV,OAAO,OAAO,CAAC,OAAO,CAAC,KAAK,CAAC,CAAA;IAC/B,CAAC;CACF"}
