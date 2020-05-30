@@ -4,13 +4,13 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you should first run:
 
-### `./setup.sh`
+### `sh run.sh`
 
-Launches the elasticsearch server using docker and populates it with the sample data
+Launches the elasticsearch server using docker and populates it with the sample data. and then launches the react ui. 
 
-Next, you should run:
+Right now react ui is exiting with code 0 so in 'ui' dir run
 
-### `npm start`
+### `npm start` 
 
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
