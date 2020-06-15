@@ -66,3 +66,5 @@ curl -s -S -o /dev/null -XPOST "localhost:9300/_bulk" --data-binary @data/22Mayo
 # curl -s -S -o /dev/null -XPOST "localhost:9300/_bulk" --data-binary @data/merged_file.ndjson
 
 printf "\n\nElasticsearch setup done, next: 'npm start'.\n\n"
+
+npm start
