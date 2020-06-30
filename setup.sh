@@ -65,4 +65,16 @@ curl -s -S -o /dev/null -XPOST "localhost:9300/_bulk" --data-binary @data/22Mayo
 curl -s -S -o /dev/null -XPOST "localhost:9300/_bulk" --data-binary @data/22Mayoutfile_full_date_15.ndjson
 # curl -s -S -o /dev/null -XPOST "localhost:9300/_bulk" --data-binary @data/merged_file.ndjson
 
-printf "\n\nElasticsearch setup done, next: 'npm start'.\n\n"
+printf "\n\nElasticsearch setup done, next: set up docker for UI.\n\n"
+
+# build the dockerfile
+docker build -t qhsearchui:dev .
+
+docker run \
+    -itd \
+    --rm \
+    -v ${PWD}:/app \
+    -v /app/node_modules \
+    -p 3001:3000 \
+    -e CHOKIDAR_USEPOLLING=true \
+    qhsearchui:dev
