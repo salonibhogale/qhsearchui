@@ -20,11 +20,15 @@ export default class About extends Component {
             tools such as <a href="https://www.elastic.co/"> elasticsearch </a>{" "}
             and <a href="http://www.searchkit.co/">searchkit</a> in ReactJS. All
             data is originally from{" "}
-            <a href="http://loksabha.nic.in/">Lok Sabha's Website</a> and have
-            been cleaned and treated in-house. In case of any discrepancies, the
-            versions maintained by the Lok Sabha remain final. The application's
-            software itself is open source under a Apache 2.0 license and is
-            available from{" "}
+            <a href="http://loksabha.nic.in/">Lok Sabha's Website</a> and has
+            been cleaned and treated in-house by adding information about the
+            Lok Sabha MPs (constituency names, states, gender etc.) from the
+            data shared by the{" "}
+            <a href="https://eci.gov.in/">Election Commission of India</a> in
+            the Statistical Reports. In case of any discrepancies, the versions
+            maintained by the Lok Sabha should be considered the authoritative
+            version. The application's software itself is open source under a
+            Apache 2.0 license and is available from{" "}
             <a href="https://github.com/tcpd/qhsearchui">our Github page</a>.
           </p>
           <p>
