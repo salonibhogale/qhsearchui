@@ -39,6 +39,7 @@ import {
   SearchkitComponent,
   Pagination,
   ItemHistogramList,
+  Hits,
 } from "searchkit";
 // import "./index.css";
 
@@ -462,9 +463,10 @@ export default class BrowseData extends Component {
                 Lok Sabha Parliamentary Questions (1999 - 2019)
               </div>
               <SearchBox
-                autofocus={true}
-                searchOnChange={true}
-                prefixQueryFields={["Question^10"]}
+                //autofocus={true}
+                queryOptions={{ analyzer: "standard" }}
+                // searchOnChange={true}
+                prefixQueryFields={["Question", "clean_answers", "subject"]}
                 //   "starred_unstarred^2",
                 //   "member",
                 //   "ministry^10",
@@ -538,11 +540,25 @@ export default class BrowseData extends Component {
                   size={10}
                 /> */}
               </SideBar>
-
               <LayoutResults>
                 <ActionBar>
                   <ActionBarRow>
                     <HitsStats component={FormattedHitsStats} />
+                    <SortingSelector
+                      options={[
+                        {
+                          label: "Relevance",
+                          field: "_score",
+                          order: "desc",
+                          defaultOption: true,
+                        },
+                        {
+                          label: "by Date",
+                          field: "date",
+                          order: "asc",
+                        },
+                      ]}
+                    />
                   </ActionBarRow>
 
                   <ActionBarRow>
@@ -572,9 +588,9 @@ export default class BrowseData extends Component {
                     </div>
                   </ActionBarRow>
                 </ActionBar>
-                <ViewSwitcherHits
+                <Hits
                   hitsPerPage={30}
-                  highlightFields={["member", "ministry", "Question"]}
+                  highlightFields={["subject", "Question", "clean_answer"]}
                   sourceFilter={[
                     "ls_no",
                     "Question",
@@ -594,15 +610,16 @@ export default class BrowseData extends Component {
                     "year",
                     "Q_Link",
                   ]}
-                  hitComponents={[
-                    {
-                      key: "list",
-                      title: "List",
-                      listComponent: GetQuestionsTable,
-                      defaultOption: true,
-                    },
-                  ]}
-                  scrollTo="body"
+                  listComponent={GetQuestionsTable}
+                  // hitComponents={[
+                  //   {
+                  //     key: "list",
+                  //     title: "List",
+                  //     listComponent: GetQuestionsTable,
+                  //     defaultOption: true,
+                  //   },
+                  // ]}
+                  // scrollTo="body"
                 />
 
                 <NoHits suggestionsField={"ministry"} />
