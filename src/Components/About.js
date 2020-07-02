@@ -25,7 +25,7 @@ export default class About extends Component {
             versions maintained by the Lok Sabha remain final. The application's
             software itself is open source under a Apache 2.0 license and is
             available from{" "}
-            <a href="https://github.com/tcpd/lokdhaba">our Github page</a>.
+            <a href="https://github.com/tcpd/qhsearchui">our Github page</a>.
           </p>
           <p>
             See more about the{" "}
