@@ -145,89 +145,89 @@ class GetQuestionsTable extends React.Component {
   }
 }
 
-const MovieHitsListItem = (props) => {
-  const { bemBlocks, result } = props;
-  let splitname = result._source.member;
-  var split_names = splitname
-    .toString()
-    .replace("[", "")
-    .split(",")
-    .map((item, i) => {
-      return <p key={i}>{item}</p>;
-    });
+// const MovieHitsListItem = (props) => {
+//   const { bemBlocks, result } = props;
+//   let splitname = result._source.member;
+//   var split_names = splitname
+//     .toString()
+//     .replace("[", "")
+//     .split(",")
+//     .map((item, i) => {
+//       return <p key={i}>{item}</p>;
+//     });
 
-  let splitparty = result._source.party;
-  var split_party = splitparty
-    .toString()
-    .split(",")
-    .map((item, i) => {
-      return <p key={i}>{item}</p>;
-    });
+//   let splitparty = result._source.party;
+//   var split_party = splitparty
+//     .toString()
+//     .split(",")
+//     .map((item, i) => {
+//       return <p key={i}>{item}</p>;
+//     });
 
-  let splitctype = result._source.constituency_type;
-  var split_ctype = splitctype
-    .toString()
-    .split(",")
-    .map((item, i) => {
-      return <p key={i}>{item}</p>;
-    });
+//   let splitctype = result._source.constituency_type;
+//   var split_ctype = splitctype
+//     .toString()
+//     .split(",")
+//     .map((item, i) => {
+//       return <p key={i}>{item}</p>;
+//     });
 
-  const source = extend({}, result._source, result.highlight);
-  return (
-    <tr
-      data-qa="hit"
-      className={bemBlocks.item().mix(bemBlocks.container("item"))}
-    >
-      <td>
-        <h3 className={bemBlocks.item("subtitle")}>{source.ls_no}</h3>
-      </td>
-      <td style={{ width: "150px" }}>
-        <h3 className={bemBlocks.item("subtitle")}>
-          {source.starred_unstarred}
-        </h3>
-      </td>
+//   const source = extend({}, result._source, result.highlight);
+//   return (
+//     <tr
+//       data-qa="hit"
+//       className={bemBlocks.item().mix(bemBlocks.container("item"))}
+//     >
+//       <td>
+//         <h3 className={bemBlocks.item("subtitle")}>{source.ls_no}</h3>
+//       </td>
+//       <td style={{ width: "150px" }}>
+//         <h3 className={bemBlocks.item("subtitle")}>
+//           {source.starred_unstarred}
+//         </h3>
+//       </td>
 
-      <td style={{ width: "150px" }}>
-        <h3 className={bemBlocks.item("subtitle")}>{split_names}</h3>
-      </td>
+//       <td style={{ width: "150px" }}>
+//         <h3 className={bemBlocks.item("subtitle")}>{split_names}</h3>
+//       </td>
 
-      <td style={{ width: "150px" }}>
-        <h3 className={bemBlocks.item("subtitle")}>{split_party}</h3>
-      </td>
+//       <td style={{ width: "150px" }}>
+//         <h3 className={bemBlocks.item("subtitle")}>{split_party}</h3>
+//       </td>
 
-      <td style={{ width: "150px" }}>
-        <h3 className={bemBlocks.item("subtitle")}>
-          <div
-            className={bemBlocks.item("text")}
-            dangerouslySetInnerHTML={{ __html: source.ministry }}
-          ></div>
-        </h3>
-      </td>
-      <td style={{ width: "150px" }}>
-        <h3 className={bemBlocks.item("subtitle")}>
-          <div
-            className={bemBlocks.item("text")}
-            dangerouslySetInnerHTML={{ __html: source.date }}
-          ></div>
-        </h3>
-      </td>
-      <td style={{ width: "150px" }}>
-        <h3 className={bemBlocks.item("subtitle")}>{split_ctype}</h3>
-      </td>
+//       <td style={{ width: "150px" }}>
+//         <h3 className={bemBlocks.item("subtitle")}>
+//           <div
+//             className={bemBlocks.item("text")}
+//             dangerouslySetInnerHTML={{ __html: source.ministry }}
+//           ></div>
+//         </h3>
+//       </td>
+//       <td style={{ width: "150px" }}>
+//         <h3 className={bemBlocks.item("subtitle")}>
+//           <div
+//             className={bemBlocks.item("text")}
+//             dangerouslySetInnerHTML={{ __html: source.date }}
+//           ></div>
+//         </h3>
+//       </td>
+//       <td style={{ width: "150px" }}>
+//         <h3 className={bemBlocks.item("subtitle")}>{split_ctype}</h3>
+//       </td>
 
-      <td style={{ width: "250px" }}>
-        <h3 className={bemBlocks.item("subtitle")}>
-          <ShowMore lines={3} more=">" less="<">
-            <div
-              className={bemBlocks.item("text")}
-              dangerouslySetInnerHTML={{ __html: source.Question }}
-            ></div>
-          </ShowMore>
-        </h3>
-      </td>
-    </tr>
-  );
-};
+//       <td style={{ width: "250px" }}>
+//         <h3 className={bemBlocks.item("subtitle")}>
+//           <ShowMore lines={3} more=">" less="<">
+//             <div
+//               className={bemBlocks.item("text")}
+//               dangerouslySetInnerHTML={{ __html: source.Question }}
+//             ></div>
+//           </ShowMore>
+//         </h3>
+//       </td>
+//     </tr>
+//   );
+// };
 
 // to display the hitstats correctly: '139 results found in 27ms'
 export class FormattedHitsStats extends HitsStats {
@@ -347,6 +347,7 @@ export default class BrowseData extends Component {
         this.setState({ csvData: for_data });
         this.setState({ change: this.state.change + 1 });
         console.log("data mapped to csvData");
+        this.setState({ isDataDownloadable: true });
       });
   }
 
@@ -365,7 +366,7 @@ export default class BrowseData extends Component {
   };
 
   onAcceptTermsAndConditions = (key, checked) => {
-    this.setState({ isDataDownloadable: checked });
+    // this.setState({ isDataDownloadable: checked });
     if (checked) {
       this.getAllData(searchkit.query);
       console.log("fetching data now");
