@@ -45,10 +45,10 @@ import {
 
 // const ES_HOST = process.env.ES_HOST || "localhost";
 // const ES_PORT = process.env.ES_PORT || 9300;
-const host = "http://localhost:9300/questions3";
+const host = "http://lokdhaba.ashoka.edu.in:9300/questions3";
 const searchkit = new SearchkitManager(host);
 
-fetch("http://localhost:9300/questions3/_search?size=2")
+fetch(host + "/_search?size=2")
   .then((response) => response.json())
   .then((jsonData) => {
     // jsonData is parsed json object received from url
