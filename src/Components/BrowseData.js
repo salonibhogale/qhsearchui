@@ -269,7 +269,7 @@ export default class BrowseData extends Component {
     const elasticsearch = require("elasticsearch");
     console.log("ping elasticsearch");
     const elasticSearchClient = new elasticsearch.Client({
-      host: "http://localhost:9300/",
+      host: "http://lokdhaba.ashoka.edu.in:9300/",
     });
 
     const result = await elasticSearchClient.search({
