@@ -313,6 +313,7 @@ export default class BrowseData extends Component {
       .then(function (result) {
         for_data.push([
           "id",
+          "date",
           "ls_number",
           "ministry",
           "question_type",
@@ -328,6 +329,7 @@ export default class BrowseData extends Component {
         for (var d = 0; d < result.length; d++) {
           for_data.push([
             result[d]._source.ID,
+            result[d]._source.date,
             result[d]._source.ls_no,
             result[d]._source.ministry,
             result[d]._source.starred_unstarred,
@@ -466,7 +468,12 @@ export default class BrowseData extends Component {
                 //autofocus={true}
                 queryOptions={{ analyzer: "standard" }}
                 // searchOnChange={true}
-                prefixQueryFields={["Question", "clean_answers", "subject"]}
+                prefixQueryFields={[
+                  "Question",
+                  "clean_answers",
+                  "subject",
+                  "member",
+                ]}
                 //   "starred_unstarred^2",
                 //   "member",
                 //   "ministry^10",
@@ -475,62 +482,78 @@ export default class BrowseData extends Component {
 
             <LayoutBody>
               <SideBar>
+                <div class="sk-item-list-option__text">
+                  <i>
+                    The panel on the right shows results for selected
+                    attributes. The categories below take into account the fact
+                    that a single question can be attributed multiple MPs and
+                    their profile characteristics.
+                  </i>
+                </div>
+                <br></br>
                 <HierarchicalMenuFilter
                   fields={["ls_no", "year"]}
-                  title="Lok Sabha Term"
+                  title="Select by Lok Sabha Term"
                   id="ls_no"
                   orderKey="_term"
                 />
-
                 <HierarchicalMenuFilter
                   fields={["starred_unstarred"]}
-                  title="Question Type"
+                  title="by Question Type"
                   id="starred_unstarred"
                 />
-
                 <RefinementListFilter
                   field="ministry"
-                  title="Ministry"
+                  title="by Ministry"
                   id="ministry"
                   size={5}
                   operator="OR"
                 />
-
-                <RefinementListFilter
-                  field="gender"
-                  title="MP's Gender"
-                  id="gender"
-                  operator="OR"
-                />
-
-                <RefinementListFilter
-                  field="constituency_type"
-                  title="MP's Constituency Type"
-                  id="constituency_type"
-                  operator="OR"
-                />
-
-                <RefinementListFilter
-                  id="party"
-                  title="MP's Party"
-                  field="party"
-                  size={5}
-                  operator="OR"
-                />
-
                 <RefinementListFilter
                   id="member"
-                  title="MP's Name"
+                  title="by Names of associated MPs"
                   field="member"
                   size={5}
                   operator="OR"
                 />
-
-                <HierarchicalMenuFilter
+                <RefinementListFilter
+                  field="gender"
+                  title="by Genders of associated MPs"
+                  id="gender"
+                  operator="OR"
+                />
+                <RefinementListFilter
+                  field="constituency_type"
+                  title="by Constituency Type of associated MPs"
+                  id="constituency_type"
+                  operator="OR"
+                />
+                <RefinementListFilter
+                  id="party"
+                  title="by Parties of associated MPs"
+                  field="party"
+                  size={5}
+                  operator="OR"
+                />
+                <RefinementListFilter
+                  id="state"
+                  title="by States of associated MPs"
+                  field="state"
+                  size={5}
+                  operator="OR"
+                />
+                <RefinementListFilter
+                  id="constituency"
+                  title="by Constituencies of associated MPs"
+                  field="constituency"
+                  size={5}
+                  operator="OR"
+                />
+                {/* <HierarchicalMenuFilter
                   fields={["state", "constituency"]}
                   title="MP's State and Constituency "
                   id="constituency"
-                />
+                /> */}
                 {/* <RefinementListFilter
                   id="state"
                   title="State"

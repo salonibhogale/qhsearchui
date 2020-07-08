@@ -24,12 +24,12 @@ export default class HomePage extends Component {
             “Browse Data” tab).
           </p>
           <p>
-            We have added features to make it easy to search the full text of
-            parliamentary questions (which have been sorted by relevancy) and
-            making it possible to download the raw data. Further, the data has
-            also been treated in-house in order to add information about the Lok
-            Sabha Members (constituency name, state, gender etc.) from the data
-            shared by the{" "}
+            We have added features to make it simple and fast to search the full
+            text of parliamentary questions (which can be sorted by
+            relevancy/date) and making it possible to download the raw data.
+            Further, the data has also been treated in-house in order to add
+            information about the Lok Sabha Members (constituency name, state,
+            gender etc.) from the data shared by the{" "}
             <a href="https://eci.gov.in/">Election Commission of India</a> in
             the Statistical Reports. This allows users to query the questions
             using the parliamentarian's profile information.

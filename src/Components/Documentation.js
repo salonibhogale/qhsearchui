@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Pdf from "../Assets/Documents/qh_codebook.pdf";
 
 export default class Documentation extends Component {
   render() {
@@ -8,10 +9,10 @@ export default class Documentation extends Component {
           <h2>Documentation</h2>
           <p>
             Please refer to the{" "}
-            <a href="" target="_blank">
+            <a href={Pdf} target="_blank">
               Parliamentary Questions Codebook
             </a>{" "}
-            (to be updated) to understand the fields in this dataset.
+            to understand the fields in this dataset.
           </p>
           <h3>TPCD-IPD: TCPD Indian Parliament Dataset (Question Hour)</h3>
           <p>
