@@ -7,6 +7,8 @@ import Table from "react-bootstrap/Table";
 import ShowMore from "react-show-more";
 import { CSVLink } from "react-csv";
 import { Button } from "react-bootstrap";
+import * as _ from "lodash";
+
 // import * as moment from "moment";
 // import { DateRangeFilter, DateRangeCalendar } from "searchkit-datefilter";
 
@@ -73,6 +75,8 @@ console.log("found searchkit results");
 class GetQuestionsTable extends React.Component {
   render() {
     const { hits } = this.props;
+    // const { bemBlocks, result } = this.props;
+    // const source: any = _.extend({}, result._source, result.highlight);
     return (
       <div
         style={{ width: "100%", boxSizing: "border-box", padding: 8 }}
@@ -85,16 +89,16 @@ class GetQuestionsTable extends React.Component {
           }}
         >
           <tbody
-            style={{ display: "block", width: "1100px", overflow: "auto" }}
+            style={{ display: "block", width: "1130px", overflow: "auto" }}
           >
             <thead>
-              <td style={{ width: "150px" }}>
+              <td style={{ width: "130px" }}>
                 <b>Date</b>
               </td>
-              <td style={{ width: "120px" }}>
+              <td style={{ width: "100px" }}>
                 <b>Ministry</b>
               </td>
-              <td style={{ width: "120px" }}>
+              <td>
                 <b>Subject</b>
               </td>
               <td style={{ width: "300px" }}>
@@ -106,8 +110,17 @@ class GetQuestionsTable extends React.Component {
               <td>
                 <b>Link</b>
               </td>
-              <td>
+              <td style={{ width: "300px" }}>
                 <b>Member</b>
+              </td>
+              <td>
+                <b>State</b>
+              </td>
+              <td>
+                <b>Constituency</b>
+              </td>
+              <td>
+                <b>Party</b>
               </td>
             </thead>
 
@@ -116,8 +129,9 @@ class GetQuestionsTable extends React.Component {
                 <td>{hit._source.date_str}</td>
                 <td>{hit._source.ministry}</td>
                 <td>{hit._source.subject}</td>
+
                 <td>
-                  <ShowMore lines={3} more=">" less="<">
+                  <ShowMore lines={2} more=">" less="<">
                     {hit._source.Question}
                   </ShowMore>
                 </td>
@@ -127,10 +141,36 @@ class GetQuestionsTable extends React.Component {
                   </ShowMore>
                 </td>
                 <td>
-                  <a href={hit._source.Q_Link}>{"Link"}</a>
+                  <a href={hit._source.Q_Link} target="_blank">
+                    {"Link"}
+                  </a>
                 </td>
                 <td>
                   {hit._source.member
+                    .toString()
+                    .split(",")
+                    .map((item, i) => {
+                      return <p key={i}>{item}</p>;
+                    })}
+                </td>
+                <td>
+                  {hit._source.state
+                    .toString()
+                    .split(",")
+                    .map((item, i) => {
+                      return <p key={i}>{item}</p>;
+                    })}
+                </td>
+                <td>
+                  {hit._source.constituency
+                    .toString()
+                    .split(",")
+                    .map((item, i) => {
+                      return <p key={i}>{item}</p>;
+                    })}
+                </td>
+                <td>
+                  {hit._source.party
                     .toString()
                     .split(",")
                     .map((item, i) => {
@@ -145,90 +185,6 @@ class GetQuestionsTable extends React.Component {
     );
   }
 }
-
-// const MovieHitsListItem = (props) => {
-//   const { bemBlocks, result } = props;
-//   let splitname = result._source.member;
-//   var split_names = splitname
-//     .toString()
-//     .replace("[", "")
-//     .split(",")
-//     .map((item, i) => {
-//       return <p key={i}>{item}</p>;
-//     });
-
-//   let splitparty = result._source.party;
-//   var split_party = splitparty
-//     .toString()
-//     .split(",")
-//     .map((item, i) => {
-//       return <p key={i}>{item}</p>;
-//     });
-
-//   let splitctype = result._source.constituency_type;
-//   var split_ctype = splitctype
-//     .toString()
-//     .split(",")
-//     .map((item, i) => {
-//       return <p key={i}>{item}</p>;
-//     });
-
-//   const source = extend({}, result._source, result.highlight);
-//   return (
-//     <tr
-//       data-qa="hit"
-//       className={bemBlocks.item().mix(bemBlocks.container("item"))}
-//     >
-//       <td>
-//         <h3 className={bemBlocks.item("subtitle")}>{source.ls_no}</h3>
-//       </td>
-//       <td style={{ width: "150px" }}>
-//         <h3 className={bemBlocks.item("subtitle")}>
-//           {source.starred_unstarred}
-//         </h3>
-//       </td>
-
-//       <td style={{ width: "150px" }}>
-//         <h3 className={bemBlocks.item("subtitle")}>{split_names}</h3>
-//       </td>
-
-//       <td style={{ width: "150px" }}>
-//         <h3 className={bemBlocks.item("subtitle")}>{split_party}</h3>
-//       </td>
-
-//       <td style={{ width: "150px" }}>
-//         <h3 className={bemBlocks.item("subtitle")}>
-//           <div
-//             className={bemBlocks.item("text")}
-//             dangerouslySetInnerHTML={{ __html: source.ministry }}
-//           ></div>
-//         </h3>
-//       </td>
-//       <td style={{ width: "150px" }}>
-//         <h3 className={bemBlocks.item("subtitle")}>
-//           <div
-//             className={bemBlocks.item("text")}
-//             dangerouslySetInnerHTML={{ __html: source.date }}
-//           ></div>
-//         </h3>
-//       </td>
-//       <td style={{ width: "150px" }}>
-//         <h3 className={bemBlocks.item("subtitle")}>{split_ctype}</h3>
-//       </td>
-
-//       <td style={{ width: "250px" }}>
-//         <h3 className={bemBlocks.item("subtitle")}>
-//           <ShowMore lines={3} more=">" less="<">
-//             <div
-//               className={bemBlocks.item("text")}
-//               dangerouslySetInnerHTML={{ __html: source.Question }}
-//             ></div>
-//           </ShowMore>
-//         </h3>
-//       </td>
-//     </tr>
-//   );
-// };
 
 // to display the hitstats correctly: '139 results found in 27ms'
 export class FormattedHitsStats extends HitsStats {
@@ -380,7 +336,7 @@ export default class BrowseData extends Component {
     var change = this.state.change;
     var showTermsAndConditionsPopup = this.state.showTermsAndConditionsPopup;
     var isDataDownloadable = this.state.isDataDownloadable;
-    const modalBody = (
+    var modalBody = (
       <div class="sk-item-list-option__text">
         <p>
           Parliamentary Questions portal is an online web interface provided by
@@ -393,10 +349,12 @@ export default class BrowseData extends Component {
         </p>
         <ul>
           <li>
-            The user must include the citation for data they use. The user must
-            not claim or imply that the Trivedi Centre for Political Data
-            endorses the user's use of the data or use of the Centre's logo(s)
-            or trademarks(s) in conjunction with the same.
+            The user must include the{" "}
+            <a href="http://lokdhaba.ashoka.edu.in:3003/docs">citation </a> for
+            data they use. The user must not claim or imply that the Trivedi
+            Centre for Political Data endorses the user's use of the data or use
+            of the Centre's logo(s) or trademarks(s) in conjunction with the
+            same.
           </li>
           <li>
             The Centre makes no warranties with respect to the data and the user
@@ -432,6 +390,9 @@ export default class BrowseData extends Component {
       </div>
     );
     var buttonClass = isDataDownloadable ? "btn-lg" : "btn-lg disabled";
+    var buttonText = isDataDownloadable
+      ? "Download Ready"
+      : "Download Not Ready";
     const modalFooter = (
       <div>
         <Button
@@ -447,7 +408,7 @@ export default class BrowseData extends Component {
             variant="primary"
             onClick={this.CloseTermsAndConditionsPopup}
           >
-            Download
+            {buttonText}
             {/* {change} */}
           </Button>
         </CSVLink>
@@ -611,9 +572,16 @@ export default class BrowseData extends Component {
                     </div>
                   </ActionBarRow>
                 </ActionBar>
+                {/* <Hits
+                  hitsPerPage={15}
+                  highlightFields={["Question", "subject", "clean_answers"]}
+                  sourceFilter={["Question", "subject", "clean_answers"]}
+                  itemComponent={GetQuestionsTable}
+                  scrollTo="body"
+                /> */}
                 <Hits
                   hitsPerPage={30}
-                  highlightFields={["subject", "Question", "clean_answer"]}
+                  highlightFields={["subject", "Question", "clean_answers"]}
                   sourceFilter={[
                     "ls_no",
                     "Question",

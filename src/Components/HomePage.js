@@ -34,6 +34,7 @@ export default class HomePage extends Component {
             the Statistical Reports. This allows users to query the questions
             using the parliamentarian's profile information.
           </p>
+
           <p>
             {" "}
             The parliamentary questions data is free and open for anyone to use.

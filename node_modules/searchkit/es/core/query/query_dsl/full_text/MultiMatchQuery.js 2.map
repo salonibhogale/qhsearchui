@@ -1,0 +1,1 @@
+{"version":3,"file":"MultiMatchQuery.js","sourceRoot":"","sources":["../../../../../src/core/query/query_dsl/full_text/MultiMatchQuery.ts"],"names":[],"mappings":"AAAA,MAAM,MAAM,GAAG,OAAO,CAAC,eAAe,CAAC,CAAA;AAWvC,MAAM,UAAU,eAAe,CAAC,KAAK,EAAE,OAA0B;IAC/D,IAAI,CAAC,KAAK,EAAE;QACV,OAAM;KACP;IAED,OAAO;QACL,WAAW,EAAE,MAAM,CAAC,EAAE,KAAK,EAAE,EAAE,OAAO,CAAC;KACxC,CAAA;AACH,CAAC"}
