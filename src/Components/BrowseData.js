@@ -48,6 +48,7 @@ import {
 // const ES_HOST = process.env.ES_HOST || "localhost";
 // const ES_PORT = process.env.ES_PORT || 9300;
 const host = "http://lokdhaba.ashoka.edu.in:9300/questions3";
+// const host = "http://localhost:9300/questions3";
 const searchkit = new SearchkitManager(host);
 
 fetch(host + "/_search?size=2")
@@ -427,14 +428,18 @@ export default class BrowseData extends Component {
               </div>
               <SearchBox
                 //autofocus={true}
-                queryOptions={{ analyzer: "standard" }}
+                // queryOptions={{ analyzer: "standard" }}
                 // searchOnChange={true}
-                prefixQueryFields={[
+                queryFields={[
                   "Question",
+                  // "Question.english",
                   "clean_answers",
+                  // "clean_answers.english",
                   "subject",
-                  "member",
+
+                  // "member",
                 ]}
+                // queryOptions={{ type: "most_fields" }}
                 //   "starred_unstarred^2",
                 //   "member",
                 //   "ministry^10",
@@ -595,6 +600,7 @@ export default class BrowseData extends Component {
                     "state",
                     "ID",
                     "subject",
+                    "subject.english",
                     "constituency",
                     "constituency_type",
                     "clean_answers",

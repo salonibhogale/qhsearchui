@@ -57,10 +57,16 @@
           "type": "integer"
         },
         "Question": {
-          "type": "string"
+          "type": "string",
+          "analyzer": "english"
         },
         "clean_answers": {
-          "type": "string"
+          "type": "string",
+          "analyzer": "english"
+        },
+        "subject": {
+          "type": "string",
+          "analyzer": "english"
         }
       }
     }
