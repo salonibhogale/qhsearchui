@@ -8,51 +8,82 @@ export default class HomePage extends Component {
           <p> Welcome to Parliamentary Questions Data Portal</p>
           <p>
             {" "}
-            This site is a repository of Parliamentary Questions raised in the
-            Lok Sabha between 1999 and 2019 (from the Thirteenth to the
-            Sixteenth Lok Sabha).
+            In a democracy like India, elections serve as a test of citizen’s
+            preferences. Once elected, the Parliament becomes an arena for the
+            winning candidates to perform this duty. This typically involves
+            attending parliamentary sessions, serving as members of committees,
+            voting on legislation, participating in debates and other
+            proceedings in the parliament as a legislator, in addition to
+            serving their constituents as a public representative.
           </p>
           <p>
             {" "}
-            The data presented here originally from{" "}
-            <a href="http://loksabhaph.nic.in/Questions/Qtextsearch.aspx">
-              Lok Sabha's repository of digitized parliamentary questions{" "}
+            The first hour of a day’s proceedings in both the Upper and Lower
+            House of the Indian Parliament is devoted to the ‘Question Hour’.
+            During this time, MPs across parties raise questions on{" "}
+            <a href="http://loksabhaph.nic.in/Questions/QuestionsHome.aspx">
+              'every aspect of administration and government activity'{" "}
             </a>
-            published by the Lok Sabha Secretariat and maintained by National
-            Informatics Centre (NIC). We have cleaned and treated the data and
-            organized it in a tabular format (which you can see under the
-            “Browse Data” tab).
+            . These questions form an important tool in the hands of
+            parliamentarians, as they are able to elicit answers to pertinent
+            questions. Each question is posed to a relevant ministry, and it is
+            the prerogative of the Ministers associated with their respective
+            ministries to provide adequate information and clarifications on
+            matters of public concern.
           </p>
           <p>
-            We have added features to make it simple and fast to search the full
-            text of parliamentary questions (which can be sorted by
-            relevancy/date) and making it possible to download the raw data.
-            Further, the data has also been treated in-house in order to add
-            information about the Lok Sabha Members (constituency name, state,
-            gender etc.) from the data shared by the{" "}
-            <a href="https://eci.gov.in/">Election Commission of India</a> in
-            the Statistical Reports. This allows users to query the questions
-            using the parliamentarian's profile information.
+            {" "}
+            Parliamentary questions thus become a powerful way to make the
+            administration accountable to the elected representatives, and
+            remain of great interest to activists, researchers and publicly
+            spirited citizens.
+          </p>
+          <p>
+            {" "}
+            This site is a repository of Parliamentary Questions raised in the
+            Lok Sabha (Lower House of the Indian Parliament) between 1999 and
+            2019.
           </p>
 
           <p>
             {" "}
+            The Lok Sabha’s website provides a repository of digitized
+            parliamentary questions published by the Lok Sabha Secretariat and
+            maintained by National Informatics Centre (NIC). We provide here an
+            interface to quickly search, explore and download the text of
+            parliamentary questions. Further, the data has also been treated
+            in-house in order to add information about the Members (constituency
+            name, state, gender etc.) from the data shared by the{" "}
+            <a href="https://eci.gov.in/">Election Commission of India</a> in
+            the Statistical Reports. Thus, it is possible to query the questions
+            for relevant information using the parliamentarian's profile
+            information. You can explore these features{" "}
+            <a href="http://lokdhaba.ashoka.edu.in:3003/browse-data">here.</a>
+          </p>
+          <p>
+            For more information, please see the{" "}
+            <a href="http://lokdhaba.ashoka.edu.in:3003/docs">Documentation </a>
+            section, which includes a detailed codebook containing all the
+            variables along with the steps to cite the data.
+          </p>
+          <p>
             The parliamentary questions data is free and open for anyone to use.
             We encourage students, researchers, media persons, policy makers and
-            others to engage with our data. Should you have any query and/or
-            notice an error, please send us a message or write us at{" "}
+            others to engage with our data. The questions may be used
+            individually to obtain official statements on a variety of topics
+            over time or in aggregate, as a large dataset amenable to research
+            on Indian public institutions and text analysis.
+          </p>
+          <p>
+            {" "}
+            Should you have any feedback, please fill out this form here. In
+            case you have any query and/or notice an error, write to us at{" "}
             <a href="mailto:tcpd-contact@ashoka.edu.in">
               tcpd-contact@ashoka.edu.in
             </a>
             .
           </p>
-          <p>
-            {" "}
-            For more information, please see the documentation tab, which
-            includes a detailed codebook containing all the variables in the
-            data. Should you use any information from this data, please be sure
-            to cite the Trivedi Center for Political Data at Ashoka University.
-          </p>
+
           {/* <img
             src={require("../Assets/Images/ambedkar-statue-at-parliament.png")}
           ></img> */}
