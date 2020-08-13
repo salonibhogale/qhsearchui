@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "./logo.svg";
+
 import "./App.css";
 import Routes from "./Routes";
 import NavBar from "./Components/Shared/NavBar.js";

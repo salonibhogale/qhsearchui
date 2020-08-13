@@ -22,12 +22,10 @@ export default class HomePage extends Component {
             House of the Indian Parliament is devoted to the ‘Question Hour’.
             During this time, MPs across parties raise questions on{" "}
             <a href="http://loksabhaph.nic.in/Questions/QuestionsHome.aspx">
-              'every aspect of administration and government activity'{" "}
+              every aspect of administration and government activity{" "}
             </a>
-            . These questions form an important tool in the hands of
-            parliamentarians, as they are able to elicit answers to pertinent
-            questions. Each question is posed to a relevant ministry, and it is
-            the prerogative of the Ministers associated with their respective
+            . Each question is posed to a relevant ministry, and it is the
+            prerogative of the Ministers associated with their respective
             ministries to provide adequate information and clarifications on
             matters of public concern.
           </p>
@@ -57,14 +55,19 @@ export default class HomePage extends Component {
             <a href="https://eci.gov.in/">Election Commission of India</a> in
             the Statistical Reports. Thus, it is possible to query the questions
             for relevant information using the parliamentarian's profile
-            information. You can explore these features{" "}
-            <a href="http://lokdhaba.ashoka.edu.in:3003/browse-data">here.</a>
+            information. You can explore these features in the{" "}
+            <a href="http://lokdhaba.ashoka.edu.in:3003/browse-data">
+              Browse/Download Data
+            </a>{" "}
+            section.
           </p>
           <p>
-            For more information, please see the{" "}
+            For more information, visit the{" "}
             <a href="http://lokdhaba.ashoka.edu.in:3003/docs">Documentation </a>
-            section, which includes a detailed codebook containing all the
-            variables along with the steps to cite the data.
+            page, which includes a detailed codebook containing all the
+            variables along with the steps to cite the data, and the{" "}
+            <a href="http://lokdhaba.ashoka.edu.in:3003/about">About </a> page
+            to read more about us.
           </p>
           <p>
             The parliamentary questions data is free and open for anyone to use.
@@ -76,12 +79,12 @@ export default class HomePage extends Component {
           </p>
           <p>
             {" "}
-            Should you have any feedback, please fill out this form here. In
+            Should you have any feedback, please fill out{" "}
+            <a href="https://forms.gle/Fqt6TdpnCDo7Vw2q8">this form </a>. In
             case you have any query and/or notice an error, write to us at{" "}
             <a href="mailto:tcpd-contact@ashoka.edu.in">
               tcpd-contact@ashoka.edu.in
             </a>
-            .
           </p>
 
           {/* <img

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "../../Assets/Styles/navbar.css";
-import $ from "jquery";
 
 export default class NavBar extends Component {
   render() {
@@ -11,6 +10,7 @@ export default class NavBar extends Component {
             height="40px"
             width="40px"
             src={require("../../Assets/Images/temp_logo.png")}
+            alt=""
           />
         </a>
         {/* <button

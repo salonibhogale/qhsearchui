@@ -63,6 +63,8 @@ curl -s -S -o /dev/null -XPOST "localhost:9300/_bulk" --data-binary @data/22Mayo
 curl -s -S -o /dev/null -XPOST "localhost:9300/_bulk" --data-binary @data/22Mayoutfile_full_date_single_3.ndjson
 curl -s -S -o /dev/null -XPOST "localhost:9300/_bulk" --data-binary @data/22Mayoutfile_full_date_14.ndjson
 curl -s -S -o /dev/null -XPOST "localhost:9300/_bulk" --data-binary @data/22Mayoutfile_full_date_15.ndjson
+
+
 # curl -s -S -o /dev/null -XPOST "localhost:9300/_bulk" --data-binary @data/merged_file.ndjson
 
 printf "\n\nElasticsearch setup done, next: set up docker for UI.\n\n"

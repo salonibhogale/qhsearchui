@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 var style = {
   backgroundColor: "#B83027",
@@ -34,6 +34,7 @@ function Footer() {
           src={require("../../Assets/Images/ashoka_logo.png")}
           height="100%"
           width="100px"
+          alt=""
         ></img>
       </div>
     </div>

@@ -1,16 +1,13 @@
 import React, { Component } from "react";
 import Popup from "./Shared/Popup.js";
 import Checkbox from "./Shared/Checkbox.js";
-import extend from "lodash/extend";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Table from "react-bootstrap/Table";
 import ShowMore from "react-show-more";
 import { CSVLink } from "react-csv";
 import { Button } from "react-bootstrap";
 import * as _ from "lodash";
-
-// import * as moment from "moment";
-// import { DateRangeFilter, DateRangeCalendar } from "searchkit-datefilter";
+import ReactTooltip from "react-tooltip";
+import { get } from "lodash";
 
 import {
   SearchkitManager,
@@ -19,16 +16,9 @@ import {
   RefinementListFilter,
   HierarchicalMenuFilter,
   HitsStats,
-  HitItemProps,
   SortingSelector,
   NoHits,
   ResetFilters,
-  RangeFilter,
-  NumericRefinementListFilter,
-  ViewSwitcherHits,
-  ViewSwitcherToggle,
-  DynamicRangeFilter,
-  InputFilter,
   GroupedSelectedFilters,
   Layout,
   TopBar,
@@ -38,29 +28,13 @@ import {
   ActionBar,
   ActionBarRow,
   SideBar,
-  SearchkitComponent,
   Pagination,
-  ItemHistogramList,
   Hits,
 } from "searchkit";
-// import "./index.css";
 
-// const ES_HOST = process.env.ES_HOST || "localhost";
-// const ES_PORT = process.env.ES_PORT || 9300;
 const host = "http://lokdhaba.ashoka.edu.in:9300/questions3";
 // const host = "http://localhost:9300/questions3";
 const searchkit = new SearchkitManager(host);
-
-fetch(host + "/_search?size=2")
-  .then((response) => response.json())
-  .then((jsonData) => {
-    // jsonData is parsed json object received from url
-    console.log(jsonData.hits.hits);
-  })
-  .catch((error) => {
-    // handle your errors here
-    console.error(error);
-  });
 
 searchkit.translateFunction = (key) => {
   return {
@@ -69,76 +43,98 @@ searchkit.translateFunction = (key) => {
   }[key];
 };
 
-console.log(searchkit.query);
 var filename = "TCPD_QH.csv";
-console.log("found searchkit results");
 
 class GetQuestionsTable extends React.Component {
   render() {
     const { hits } = this.props;
-    // const { bemBlocks, result } = this.props;
-    // const source: any = _.extend({}, result._source, result.highlight);
     return (
-      <div
-        style={{ width: "100%", boxSizing: "border-box", padding: 8 }}
-        class="sk-item-list-option__text"
-      >
+      <div className="sk-item-list-option__text">
         <table
           className="sk-table sk-table-striped"
-          style={{
-            boxSizing: "border-box",
-          }}
+          align="center"
+          table-layout="auto"
+          style={{ display: "block", width: "1125px", overflow: "auto" }}
         >
-          <tbody
-            style={{ display: "block", width: "1130px", overflow: "auto" }}
-          >
-            <thead>
-              <td style={{ width: "130px" }}>
-                <b>Date</b>
-              </td>
-              <td style={{ width: "100px" }}>
-                <b>Ministry</b>
-              </td>
-              <td>
-                <b>Subject</b>
-              </td>
-              <td style={{ width: "300px" }}>
-                <b>Question</b>
-              </td>
-              <td style={{ width: "300px" }}>
-                <b>Answer</b>
-              </td>
-              <td>
-                <b>Link</b>
-              </td>
-              <td style={{ width: "300px" }}>
-                <b>Member</b>
-              </td>
-              <td>
-                <b>State</b>
-              </td>
-              <td>
-                <b>Constituency</b>
-              </td>
-              <td>
-                <b>Party</b>
-              </td>
-            </thead>
-
+          <thead>
+            <tr>
+              <th>
+                {" "}
+                <div className="demonstration">
+                  <a data-for="main" data-tip="Hello" data-iscapture="true">
+                    Date
+                  </a>
+                  <ReactTooltip
+                    place="top"
+                    type="dark"
+                    effect="float"
+                    id="main"
+                  />
+                </div>
+              </th>
+              <th>Ministry</th>
+              <th>Subject</th>
+              <th>
+                <div className="question">Question</div>
+              </th>
+              <th>
+                <div className="answer">Answer</div>
+              </th>
+              <th>Link</th>
+              <th>
+                <div className="member_info">Member</div>
+              </th>
+              <th>
+                <div className="state_info">State</div>
+              </th>
+              <th>
+                <div className="constituency_info">Constituency</div>
+              </th>
+              <th>Party</th>
+            </tr>
+          </thead>
+          <tbody>
             {hits.map((hit) => (
               <tr key={hit._id}>
                 <td>{hit._source.date_str}</td>
+
                 <td>{hit._source.ministry}</td>
-                <td>{hit._source.subject}</td>
 
                 <td>
-                  <ShowMore lines={2} more=">" less="<">
-                    {hit._source.Question}
+                  <div
+                    className="sk-item-list-option__text"
+                    dangerouslySetInnerHTML={{
+                      __html: get(
+                        hit,
+                        "highlight.subject",
+                        hit._source.subject
+                      ),
+                    }}
+                  ></div>
+                </td>
+
+                <td>
+                  <ShowMore lines={5} more=">" less="<">
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: get(
+                          hit,
+                          "highlight.Question",
+                          hit._source.Question
+                        ),
+                      }}
+                    ></div>
                   </ShowMore>
                 </td>
                 <td>
-                  <ShowMore lines={2} more=">" less="<">
-                    {hit._source.clean_answers}
+                  <ShowMore lines={5} more=">" less="<">
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html:
+                          _.get(hit, "highlight.clean_answers", false) ||
+                          hit._source.clean_answers,
+                      }}
+                    ></div>
                   </ShowMore>
                 </td>
                 <td>
@@ -146,6 +142,7 @@ class GetQuestionsTable extends React.Component {
                     {"Link"}
                   </a>
                 </td>
+
                 <td>
                   {hit._source.member
                     .toString()
@@ -157,11 +154,13 @@ class GetQuestionsTable extends React.Component {
                 <td>
                   {hit._source.state
                     .toString()
+
                     .split(",")
                     .map((item, i) => {
                       return <p key={i}>{item}</p>;
                     })}
                 </td>
+
                 <td>
                   {hit._source.constituency
                     .toString()
@@ -218,13 +217,13 @@ export default class BrowseData extends Component {
       showTermsAndConditionsPopup: false,
       csvData: [],
       isDataDownloadable: false,
-      change: 0,
+
+      buttonText: "Download not ready",
     };
   }
 
   async getAllData(query) {
     const elasticsearch = require("elasticsearch");
-    console.log("ping elasticsearch");
     const elasticSearchClient = new elasticsearch.Client({
       host: "http://lokdhaba.ashoka.edu.in:9300/",
     });
@@ -239,8 +238,19 @@ export default class BrowseData extends Component {
     const retriever = async ({ data, total, scrollId }) => {
       if (data.length >= total) {
         console.log("Condition is true");
+        this.setState({
+          buttonText: Math.round((data.length / total) * 100)
+            .toString()
+            .concat("% downloaded"),
+        });
         return data;
       }
+
+      this.setState({
+        buttonText: Math.round((data.length / total) * 100)
+          .toString()
+          .concat("% downloaded"),
+      });
 
       const result = await elasticSearchClient.scroll({
         scroll: "1m",
@@ -253,10 +263,6 @@ export default class BrowseData extends Component {
         data,
       });
     };
-    console.log("This is result here");
-    console.log(result.hits.hits);
-    console.log(result);
-    console.log("End of result here");
 
     const final_data = retriever({
       total: result.hits.total,
@@ -264,7 +270,6 @@ export default class BrowseData extends Component {
       data: result.hits.hits,
     });
 
-    console.log(final_data);
     var for_data = [];
     final_data
       .then(function (result) {
@@ -298,16 +303,14 @@ export default class BrowseData extends Component {
             result[d]._source.constituency,
             result[d]._source.constituency_type,
             result[d]._source.gender,
-            // console.log(result[d]._source.party),
           ]);
         }
-        console.log("new data populated");
       })
       .then(() => {
         this.setState({ csvData: for_data });
-        this.setState({ change: this.state.change + 1 });
-        console.log("data mapped to csvData");
+
         this.setState({ isDataDownloadable: true });
+        this.setState({ buttonText: "Download Ready" });
       });
   }
 
@@ -318,27 +321,29 @@ export default class BrowseData extends Component {
   CloseTermsAndConditionsPopup = () => {
     this.setState({ showTermsAndConditionsPopup: false });
     this.setState({ isDataDownloadable: false });
+    this.setState({ buttonText: "Download not Ready" });
   };
 
   CancelTermsAndConditionsPopup = () => {
     this.setState({ isDataDownloadable: false });
     this.setState({ showTermsAndConditionsPopup: false });
+    this.setState({ buttonText: "Download not Ready" });
   };
 
   onAcceptTermsAndConditions = (key, checked) => {
-    // this.setState({ isDataDownloadable: checked });
     if (checked) {
       this.getAllData(searchkit.query);
-      console.log("fetching data now");
     }
+    this.setState({ buttonText: "Fetching Data" });
   };
   render() {
     var csvData = this.state.csvData;
-    var change = this.state.change;
+
     var showTermsAndConditionsPopup = this.state.showTermsAndConditionsPopup;
     var isDataDownloadable = this.state.isDataDownloadable;
+    var buttonText = this.state.buttonText;
     var modalBody = (
-      <div class="sk-item-list-option__text">
+      <div className="sk-item-list-option__text">
         <p>
           Parliamentary Questions portal is an online web interface provided by
           the Trivedi Centre for Political Data. In these terms of use of the
@@ -380,7 +385,7 @@ export default class BrowseData extends Component {
         <Checkbox
           id={"dd_accept_condition"}
           label={
-            <div class="sk-item-list-option__text">
+            <div className="sk-item-list-option__text">
               {" "}
               I accept the terms and conditions mentioned here.{" "}
             </div>
@@ -390,14 +395,14 @@ export default class BrowseData extends Component {
         />
       </div>
     );
-    var buttonClass = isDataDownloadable ? "btn-lg" : "btn-lg disabled";
-    var buttonText = isDataDownloadable
-      ? "Download Ready"
-      : "Download Not Ready";
+    var buttonClass = isDataDownloadable
+      ? "btn-default"
+      : "btn-default disabled";
+
     const modalFooter = (
       <div>
         <Button
-          className="btn-lg"
+          className="btn-default"
           variant="primary"
           onClick={this.CancelTermsAndConditionsPopup}
         >
@@ -409,17 +414,13 @@ export default class BrowseData extends Component {
             variant="primary"
             onClick={this.CloseTermsAndConditionsPopup}
           >
-            {buttonText}
-            {/* {change} */}
+            {this.state.buttonText}
           </Button>
         </CSVLink>
       </div>
     );
     return (
-      //   <div className="content overflow-auto">
       <div className="browse-data">
-        {/* <div className="row"> */}
-        {/* <h2>Browse Data Page</h2> */}
         <SearchkitProvider searchkit={searchkit}>
           <Layout size="l">
             <TopBar>
@@ -427,33 +428,23 @@ export default class BrowseData extends Component {
                 Lok Sabha Parliamentary Questions (1999 - 2019)
               </div>
               <SearchBox
-                //autofocus={true}
-                // queryOptions={{ analyzer: "standard" }}
-                // searchOnChange={true}
-                queryFields={[
-                  "Question",
-                  // "Question.english",
-                  "clean_answers",
-                  // "clean_answers.english",
-                  "subject",
-
-                  // "member",
-                ]}
-                // queryOptions={{ type: "most_fields" }}
-                //   "starred_unstarred^2",
-                //   "member",
-                //   "ministry^10",
+                translations={{
+                  "searchbox.placeholder":
+                    "search subject, question and answer text",
+                }}
+                autofocus={true}
+                queryOptions={{ analyzer: "standard" }}
+                queryFields={["Question", "clean_answers", "subject"]}
               />
             </TopBar>
 
             <LayoutBody>
               <SideBar>
-                <div class="sk-item-list-option__text">
+                <div className="sk-item-list-option__text">
                   <i>
                     The panel on the right shows results for selected
-                    attributes. The categories below take into account the fact
-                    that a single question can be attributed multiple MPs and
-                    their profile characteristics.
+                    attributes. A single question can be attributed multiple MPs
+                    and their respective profile information.
                   </i>
                 </div>
                 <br></br>
@@ -515,19 +506,6 @@ export default class BrowseData extends Component {
                   size={5}
                   operator="OR"
                 />
-                {/* <HierarchicalMenuFilter
-                  fields={["state", "constituency"]}
-                  title="MP's State and Constituency "
-                  id="constituency"
-                /> */}
-                {/* <RefinementListFilter
-                  id="state"
-                  title="State"
-                  field="state"
-                  operator="AND"
-                  listComponent={ItemHistogramList}
-                  size={10}
-                /> */}
               </SideBar>
               <LayoutResults>
                 <ActionBar>
@@ -556,8 +534,7 @@ export default class BrowseData extends Component {
 
                     <div>
                       <Button
-                        // className="btn-lg"
-                        size="lg"
+                        size="btn-default"
                         variant="primary"
                         onClick={this.showTermsAndConditionsPopup}
                       >
@@ -577,13 +554,6 @@ export default class BrowseData extends Component {
                     </div>
                   </ActionBarRow>
                 </ActionBar>
-                {/* <Hits
-                  hitsPerPage={15}
-                  highlightFields={["Question", "subject", "clean_answers"]}
-                  sourceFilter={["Question", "subject", "clean_answers"]}
-                  itemComponent={GetQuestionsTable}
-                  scrollTo="body"
-                /> */}
                 <Hits
                   hitsPerPage={30}
                   highlightFields={["subject", "Question", "clean_answers"]}
@@ -607,19 +577,19 @@ export default class BrowseData extends Component {
                     "year",
                     "Q_Link",
                   ]}
+                  customHighlight={{
+                    number_of_fragments: 0,
+                    matched_fields: ["field", "field.keyword"],
+                  }}
                   listComponent={GetQuestionsTable}
-                  // hitComponents={[
-                  //   {
-                  //     key: "list",
-                  //     title: "List",
-                  //     listComponent: GetQuestionsTable,
-                  //     defaultOption: true,
-                  //   },
-                  // ]}
-                  // scrollTo="body"
                 />
 
-                <NoHits suggestionsField={"ministry"} />
+                <NoHits
+                  translations={{
+                    "NoHits.NoResultsFound":
+                      'If you are expecting a result for "{query}" and think that there may be an issue with the search engine, log your query in the feedback form link on the Home page.',
+                  }}
+                />
                 <InitialLoader />
                 <Pagination showNumbers={true} />
               </LayoutResults>

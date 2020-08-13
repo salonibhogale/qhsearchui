@@ -19,6 +19,10 @@ label {
   background: rgba(0, 0, 0, 0.6);
 }
 
+em {
+  background-color: #fffacd;
+}
+
 .modal-header {
   background: whitesmoke;
 }
@@ -56,4 +60,55 @@ a.disabled,
 .nav-item.active .nav-link {
   background-color: #b83027;
   color: white;
+}
+
+.demonstration {
+  width: 80px;
+  /* height: 50px; */
+  /* margin: 10px auto; */
+  /* background: rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  box-sizing: border-box;
+  position: relative; */
+}
+.demonstration a {
+  text-align: center;
+  color: #222;
+  cursor: pointer;
+}
+
+.question {
+  width: 250px;
+  /* font-size: 8px; */
+}
+
+.answer {
+  width: 250px;
+  /* font-size: 8px; */
+}
+
+.member_info {
+  width: 220px;
+  /* font-size: 8px; */
+}
+.state_info {
+  width: 120px;
+  /* font-size: 8px; */
+}
+
+.constituency_info {
+  width: 150px;
+  /* font-size: 8px; */
+}
+.sk-item-list-option__text {
+  font-size: 13px;
+}
+
+.insidetable {
+  height: 50px;
+  font-size: 10px;
+  padding: 0px;
+}
+table {
+  padding: 3;
 }
