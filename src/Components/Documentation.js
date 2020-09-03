@@ -21,13 +21,13 @@ export default class Documentation extends Component {
             suggested citations below:{" "}
           </p>
           <p>
-            <strong>Data:</strong> Bhogale, Saloni. “TPCD-IPD: TCPD Indian
-            Parliament Dataset (Question Hour)“. 2019. Trivedi Centre for
-            Political Data, Ashoka University.
+            <strong>Data:</strong> "TPCD-IPD: TCPD Indian Parliament Dataset
+            (Question Hour) 1.0". Trivedi Centre for Political Data, Ashoka
+            University
           </p>
           <p>
-            <strong>Codebook:</strong> Bhogale, Saloni. “TPCD-IPD: TCPD Indian
-            Parliament Codebook (Question Hour)“. 2019. Trivedi Centre for
+            <strong>Codebook:</strong> Bhogale, Saloni. "TPCD-IPD: TCPD Indian
+            Parliament Codebook (Question Hour)". 2019. Trivedi Centre for
             Political Data, Ashoka University.{" "}
           </p>
         </div>

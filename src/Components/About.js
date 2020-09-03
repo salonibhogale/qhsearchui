@@ -31,6 +31,13 @@ export default class About extends Component {
             Apache 2.0 license and is available from{" "}
             <a href="https://github.com/tcpd/qhsearchui">our Github page</a>.
           </p>
+          <h2> Credits </h2>
+          <p>
+            The lead developer for this project was Saloni Bhogale. The tool has
+            been developed with the help of inputs and support from Sudheendra
+            Hangal, Mohit Kumar, Chinmay Narayan, Gilles Verniers, Priyamvada
+            Trivedi and many others associated with TCPD.
+          </p>
           <p>
             See more about the{" "}
             <a href="https://tcpd.ashoka.edu.in/team/">TCPD team</a>. You can
