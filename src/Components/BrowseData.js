@@ -32,7 +32,7 @@ import {
   Hits,
 } from "searchkit";
 
-const host = "http://lokdhaba.ashoka.edu.in:9300/questions3";
+const host = "https://lokdhaba.ashoka.edu.in/es/questions3";
 // const host = "http://localhost:9300/questions3";
 const searchkit = new SearchkitManager(host);
 
@@ -225,7 +225,7 @@ export default class BrowseData extends Component {
   async getAllData(query) {
     const elasticsearch = require("elasticsearch");
     const elasticSearchClient = new elasticsearch.Client({
-      host: "http://lokdhaba.ashoka.edu.in:9300/",
+	    host: "http://lokdhaba.ashoka.edu.in:9300/",
     });
 
     const result = await elasticSearchClient.search({
@@ -356,7 +356,7 @@ export default class BrowseData extends Component {
         <ul>
           <li>
             The user must include the{" "}
-            <a href="http://lokdhaba.ashoka.edu.in:3003/docs">citation </a> for
+            <a href="http://qh.lokdhaba.ashoka.edu.in/docs">citation </a> for
             data they use. The user must not claim or imply that the Trivedi
             Centre for Political Data endorses the user's use of the data or use
             of the Centre's logo(s) or trademarks(s) in conjunction with the
