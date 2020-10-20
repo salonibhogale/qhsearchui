@@ -287,6 +287,7 @@ export default class BrowseData extends Component {
           "constituency",
           "constituency_type",
           "gender",
+          "subject",
         ]);
         for (var d = 0; d < result.length; d++) {
           for_data.push([
@@ -303,6 +304,7 @@ export default class BrowseData extends Component {
             result[d]._source.constituency,
             result[d]._source.constituency_type,
             result[d]._source.gender,
+            result[d]._source.subject
           ]);
         }
       })
