@@ -56,17 +56,17 @@ export default class HomePage extends Component {
             the Statistical Reports. Thus, it is possible to query the questions
             for relevant information using the parliamentarian's profile
             information. You can explore these features in the{" "}
-            <a href="http://lokdhaba.ashoka.edu.in:3003/browse-data">
+            <a href="/browse-data">
               Browse/Download Data
             </a>{" "}
             section.
           </p>
           <p>
             For more information, visit the{" "}
-            <a href="http://lokdhaba.ashoka.edu.in:3003/docs">Documentation </a>
+            <a href="/docs">Documentation </a>
             page, which includes a detailed codebook containing all the
             variables along with the steps to cite the data, and the{" "}
-            <a href="http://lokdhaba.ashoka.edu.in:3003/about">About </a> page
+            <a href="/about">About </a> page
             to read more about us.
           </p>
           <p>
