@@ -225,7 +225,7 @@ export default class BrowseData extends Component {
   async getAllData(query) {
     const elasticsearch = require("elasticsearch");
     const elasticSearchClient = new elasticsearch.Client({
-	    host: "http://lokdhaba.ashoka.edu.in:9300/",
+	    host: "https://lokdhaba.ashoka.edu.in/es/",
     });
 
     const result = await elasticSearchClient.search({

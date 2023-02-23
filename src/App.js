@@ -7,7 +7,7 @@ import Footer from "./Components/Shared/Footer.js";
 
 function App() {
   return (
-    <div className="cont">
+    <div className="conta">
       <NavBar />
       <Routes />
       <Footer />
