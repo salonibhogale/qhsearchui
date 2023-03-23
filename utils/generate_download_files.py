@@ -31,7 +31,7 @@ for tar_file in tar_files:
 # Clean and process the data
 
 # 1. Drop empty columns
-all_df = all_df.dropna(subset = 'ID', axis = 'index')
+all_df = all_df.dropna(subset = ['ID'], axis = 'index')
 all_df = all_df.drop(['index._index', 'index._type'], axis = 'columns')
 
 # 2. Convert the lists into comma-separated values
@@ -74,7 +74,7 @@ all_df = all_df[keep_columns]
 # Generate Assembly-wise data files
 for ls_no in all_df['ls_number'].unique():
     tmp_df = all_df[all_df['ls_number'] == ls_no]
-    out_path = os.path.join(save_to_folder, f"TCPD_QH_LS_{ls_no}.tsv")
+    out_path = os.path.join(save_to_folder, f"TCPD_QH_LS_{ls_no}.tsv.gz")
     
     tmp_df.to_csv(
         out_path,
@@ -87,7 +87,7 @@ for ls_no in all_df['ls_number'].unique():
     
 # All QH at once
 all_df.to_csv(
-    os.path.join(save_to_folder, "TCPD_QH.tsv"),
+    os.path.join(save_to_folder, "TCPD_QH.tsv.gz"),
     sep = '\t',
     quoting = csv.QUOTE_ALL,
     quotechar = '"',
