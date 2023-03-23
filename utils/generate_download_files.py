@@ -12,7 +12,7 @@ if(not os.path.exists(save_to_folder)):
 
 
 # These are the source files!
-tar_files = os.listdir('data')
+tar_files = os.listdir('../data')
 tar_files = [i for i in tar_files if(i.endswith('.ndjson'))]
 
 
