@@ -12,14 +12,16 @@ if(not os.path.exists(save_to_folder)):
 
 
 # These are the source files!
-tar_files = os.listdir('../data')
+data_folder = '../data'
+tar_files = os.listdir(data_folder)
 tar_files = [i for i in tar_files if(i.endswith('.ndjson'))]
 
 
 # Create a dataset with all the source files first
 all_df = pd.DataFrame()
 for tar_file in tar_files:
-    with open(f"data/{tar_file}", 'r') as i_file:
+    tar_file_path = os.path.join(data_folder, tar_file)
+    with open(tar_file_path, 'r') as i_file:
         tmp_data = ndjson.load(i_file)
         
     tmp_df = pd.json_normalize(tmp_data)
