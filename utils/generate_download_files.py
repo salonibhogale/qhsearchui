@@ -46,7 +46,8 @@ all_df = all_df.rename(columns = {
     'ls_no' : 'ls_number',
     'starred_unstarred' : 'question_type',
     'Question' : 'question_text',
-    'clean_answers' : 'answer_text'
+    'clean_answers' : 'answer_text',
+    'Q_Link' : 'link'
 })
 
 
@@ -65,6 +66,7 @@ keep_columns = [
     "constituency_type",
     "gender",
     "subject",
+    "link"
 ]
 
 
@@ -84,7 +86,7 @@ for ls_no in all_df['ls_number'].unique():
         index = False,
         compression = 'gzip'
     )
-    
+
 # All QH at once
 all_df.to_csv(
     os.path.join(save_to_folder, "TCPD_QH.tsv.gz"),
