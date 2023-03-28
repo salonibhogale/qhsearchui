@@ -6,7 +6,7 @@ import csv
 
 
 # This is where we will store the download-able files, to be served via NGINX
-save_to_folder = "/home/ubuntu/ld_data_downloads/qh_downloads"
+save_to_folder = "/home/ubuntu/ld_data_downloads/downloads/QH"
 if(not os.path.exists(save_to_folder)):
     os.mkdir(save_to_folder)
 
@@ -86,6 +86,8 @@ for ls_no in all_df['ls_number'].unique():
         index = False,
         compression = 'gzip'
     )
+    print(f"[SAVED] Assembly #{ls_no} questions")
+
 
 # All QH at once
 all_df.to_csv(
@@ -96,3 +98,5 @@ all_df.to_csv(
     index = False,
     compression = 'gzip'
 )
+
+print("[SAVED] Consolidated questions file")
