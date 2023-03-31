@@ -3,7 +3,6 @@ import Popup from "./Shared/Popup.js";
 import Checkbox from "./Shared/Checkbox.js";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ShowMore from "react-show-more";
-import { CSVLink } from "react-csv";
 import { Button } from "react-bootstrap";
 import * as _ from "lodash";
 import ReactTooltip from "react-tooltip";
@@ -32,7 +31,8 @@ import {
   Hits,
 } from "searchkit";
 
-const host = "http://lokdhaba.ashoka.edu.in:9300/questions3";
+const host = "https://lokdhaba.ashoka.edu.in/es/questions3";
+const downloadUrl = "https://lokdhaba.ashoka.edu.in/downloads/QH/";
 // const host = "http://localhost:9300/questions3";
 const searchkit = new SearchkitManager(host);
 
@@ -43,7 +43,7 @@ searchkit.translateFunction = (key) => {
   }[key];
 };
 
-var filename = "TCPD_QH.csv";
+var filename = "TCPD_QH.tsv";
 
 class GetQuestionsTable extends React.Component {
   render() {
@@ -215,105 +215,32 @@ export default class BrowseData extends Component {
     super(props);
     this.state = {
       showTermsAndConditionsPopup: false,
-      csvData: [],
       isDataDownloadable: false,
-
       buttonText: "Download not ready",
+      downloadUrl : ""
     };
   }
 
-  async getAllData(query) {
-    const elasticsearch = require("elasticsearch");
-    const elasticSearchClient = new elasticsearch.Client({
-      host: "http://lokdhaba.ashoka.edu.in:9300/",
-    });
-
-    const result = await elasticSearchClient.search({
-      index: "questions3",
-      scroll: "2m",
-      size: 10000,
-      body: query.query,
-    });
-
-    const retriever = async ({ data, total, scrollId }) => {
-      if (data.length >= total) {
-        console.log("Condition is true");
-        this.setState({
-          buttonText: Math.round((data.length / total) * 100)
-            .toString()
-            .concat("% downloaded"),
-        });
-        return data;
+  getAllData(query) {
+    let target_assembly = "ALL";
+    console.log(query.query);
+    if('post_filter' in query.query) {
+      console.log("post_filter", query.query.post_filter);
+      let tar_filters = query.query.post_filter.term;
+      if('ls_no' in tar_filters) { 
+        target_assembly = tar_filters['ls_no'];
       }
-
-      this.setState({
-        buttonText: Math.round((data.length / total) * 100)
-          .toString()
-          .concat("% downloaded"),
-      });
-
-      const result = await elasticSearchClient.scroll({
-        scroll: "1m",
-        scroll_id: scrollId,
-      });
-      data = [...data, ...result.hits.hits];
-      return retriever({
-        total,
-        scrollId: result._scroll_id,
-        data,
-      });
-    };
-
-    const final_data = retriever({
-      total: result.hits.total,
-      scrollId: result._scroll_id,
-      data: result.hits.hits,
-    });
-
-    var for_data = [];
-    final_data
-      .then(function (result) {
-        for_data.push([
-          "id",
-          "date",
-          "ls_number",
-          "ministry",
-          "question_type",
-          "question_text",
-          "answer_text",
-          "member",
-          "party",
-          "state",
-          "constituency",
-          "constituency_type",
-          "gender",
-          "subject",
-        ]);
-        for (var d = 0; d < result.length; d++) {
-          for_data.push([
-            result[d]._source.ID,
-            result[d]._source.date,
-            result[d]._source.ls_no,
-            result[d]._source.ministry,
-            result[d]._source.starred_unstarred,
-            result[d]._source.Question,
-            result[d]._source.clean_answers,
-            result[d]._source.member,
-            result[d]._source.party,
-            result[d]._source.state,
-            result[d]._source.constituency,
-            result[d]._source.constituency_type,
-            result[d]._source.gender,
-            result[d]._source.subject
-          ]);
-        }
-      })
-      .then(() => {
-        this.setState({ csvData: for_data });
-
-        this.setState({ isDataDownloadable: true });
-        this.setState({ buttonText: "Download Ready" });
-      });
+    }
+    this.setState({ isDataDownloadable: true });
+    this.setState({ buttonText: "Download Ready" });
+    let tar_file = `TCPD_QH.tsv.gz`;
+    if(target_assembly !== "ALL") {
+      tar_file = `TCPD_QH_LS_${target_assembly}.tsv.gz`;
+    }
+    const final_url = downloadUrl + tar_file;
+    this.setState({ downloadUrl : final_url});
+    let d_button = document.querySelector("#downloadUrl");
+    d_button.setAttribute("href", final_url);
   }
 
   showTermsAndConditionsPopup = () => {
@@ -321,6 +248,8 @@ export default class BrowseData extends Component {
   };
 
   CloseTermsAndConditionsPopup = () => {
+    let d_button = document.querySelector("#downloadUrl");
+    d_button.click();
     this.setState({ showTermsAndConditionsPopup: false });
     this.setState({ isDataDownloadable: false });
     this.setState({ buttonText: "Download not Ready" });
@@ -334,12 +263,16 @@ export default class BrowseData extends Component {
 
   onAcceptTermsAndConditions = (key, checked) => {
     if (checked) {
+      this.setState({ buttonText: "Fetching Data" });
+      this.setState({isDataDownloadable : false});
       this.getAllData(searchkit.query);
     }
-    this.setState({ buttonText: "Fetching Data" });
+    else {
+      this.setState({isDataDownloadable : false});
+      this.setState({buttonText : "Download not Ready"});
+    }
   };
   render() {
-    var csvData = this.state.csvData;
 
     var showTermsAndConditionsPopup = this.state.showTermsAndConditionsPopup;
     var isDataDownloadable = this.state.isDataDownloadable;
@@ -358,7 +291,7 @@ export default class BrowseData extends Component {
         <ul>
           <li>
             The user must include the{" "}
-            <a href="http://lokdhaba.ashoka.edu.in:3003/docs">citation </a> for
+            <a href="http://qh.lokdhaba.ashoka.edu.in/docs">citation </a> for
             data they use. The user must not claim or imply that the Trivedi
             Centre for Political Data endorses the user's use of the data or use
             of the Centre's logo(s) or trademarks(s) in conjunction with the
@@ -384,6 +317,13 @@ export default class BrowseData extends Component {
           </li>
         </ul>
 
+        <hr></hr>
+        <h5>Download Format</h5>
+        <ul>
+          <li>Due to the massive size of the dataset, the download files are compressed to GZIP files</li>
+          <li>The volume of the data does not permit manipulation using most spreadsheet softwares (such as MS Excel). These softwares have limits on the number of characters allowed inside a single cell, and our dataset breaks this limit.</li>
+          <li>The data is served in TSV (Tab-separated values) files, with separator `\t`. This is to ensure that the dataset is parsed correctly by the software (we had encountered issues with using our standard CSV files).</li>
+        </ul>
         <Checkbox
           id={"dd_accept_condition"}
           label={
@@ -410,15 +350,14 @@ export default class BrowseData extends Component {
         >
           Cancel
         </Button>
-        <CSVLink className={buttonClass} data={csvData} filename={filename}>
-          <Button
-            className={buttonClass}
-            variant="primary"
-            onClick={this.CloseTermsAndConditionsPopup}
-          >
-            {this.state.buttonText}
-          </Button>
-        </CSVLink>
+        <a id="downloadUrl"></a>
+        <Button
+          className={buttonClass}
+          variant="primary"
+          onClick={this.CloseTermsAndConditionsPopup}
+        >
+          {this.state.buttonText}
+        </Button>
       </div>
     );
     return (
