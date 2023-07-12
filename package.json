@@ -20,7 +20,7 @@
     "react-show-more": "^2.0.0",
     "react-table": "^7.0.4",
     "react-tooltip": "^4.2.7",
-    "searchkit": "^2.4.1-alpha.4"
+    "searchkit": "^4.8.0"
   },
   "scripts": {
     "start": "react-scripts start",
